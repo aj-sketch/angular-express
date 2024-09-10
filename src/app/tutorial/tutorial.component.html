@@ -1,0 +1,56 @@
+<div>
+    <form #myForm="ngForm" class="form-horizontal" (submit)="addTutorial()">
+        <div class="form-group">
+            <label for="title" class="col-sm-2 control-label">Tutorial Title : </label>
+            <div class="col-xs-3">
+                <input type="text" class="form-control" [(ngModel)]="model.title" name="title">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description" class="col-sm-2 control-label">Tutorial Description : </label>
+            <div class="col-xs-3">
+                <input type="text" class="form-control" [(ngModel)]="model.description" name="description">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="published" class="col-sm-2 control-label">Published : </label>
+            <div class="col-xs-3">
+                <select class="form-control" [(ngModel)]="model.published" name="published">
+                    <option [ngValue]="true">Yes</option>
+                    <option [ngValue]="false">No</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-offset-2 col-sm-8">
+            <button type="submit" class="btn btn-success">Save</button>
+            <button type="reset" class="btn btn-info">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<div>
+    <table class="table custom-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Published</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <!-- tbody -->
+        <tbody>
+            <tr *ngFor="let tutorial of tutorials">
+                <td>{{ tutorial.id }}</td>
+                <td>{{ tutorial.title }}</td>
+                <td>{{ tutorial.description }}</td>
+                <td>{{ tutorial.published ? 'Yes' : 'No' }}</td>
+                <td width="275">
+                    <a class="btn btn-success" (click)="editTutorial(tutorial.id)" style="margin-right: 10px;">Edit</a>               
+                    <a class="btn btn-danger" (click)="deleteTutorial(tutorial.id)">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
